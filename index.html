@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Transport Booking</title>
+  <style>
+    /* Reset and basic styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0275d8;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #0275d8;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 0.5rem 0 0.2rem;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background: #0275d8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #0256a3;
+    }
+
+    .message {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: bold;
+      color: green;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.8rem;
+      text-align: center;
+    }
+
+    th {
+      background: #0275d8;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-size: 14px;
+      background: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Smart Transport Booking</h1>
+    <p>Supporting UN SDG 11: Sustainable Cities & Communities</p>
+  </header>
+
+  <div class="container">
+    <h2>Book Your Ride</h2>
+    <form id="bookingForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" required>
+
+      <label for="pickup">Pick-up Location</label>
+      <input type="text" id="pickup" required>
+
+      <label for="dropoff">Drop-off Location</label>
+      <input type="text" id="dropoff" required>
+
+      <label for="transport">Transport Type</label>
+      <select id="transport" required>
+        <option value="">--Select--</option>
+        <option value="Bus">Bus</option>
+        <option value="Taxi">Taxi</option>
+        <option value="Boda Boda">Boda Boda</option>
+        <option value="Electric Shuttle">Electric Shuttle</option>
+      </select>
+
+      <button type="submit">Book Now</button>
+    </form>
+    <div class="message" id="message"></div>
+
+    <h2>My Bookings</h2>
+    <table id="bookingsTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Pickup</th>
+          <th>Dropoff</th>
+          <th>Transport</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Bookings will appear here -->
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    &copy; 2025 Smart Transport | Promoting eco-friendly mobility in cities.
+  </footer>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const message = document.getElementById('message');
+    const bookingsTable = document.getElementById('bookingsTable').getElementsByTagName('tbody')[0];
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const pickup = document.getElementById('pickup').value;
+      const dropoff = document.getElementById('dropoff').value;
+      const transport = document.getElementById('transport').value;
+
+      // Show success message
+      message.textContent = `✅ Thank you, ${name}! Your ${transport} has been booked from ${pickup} to ${dropoff}.`;
+
+      // Add booking to table
+      const row = bookingsTable.insertRow();
+      row.insertCell(0).textContent = name;
+      row.insertCell(1).textContent = pickup;
+      row.insertCell(2).textContent = dropoff;
+      row.insertCell(3).textContent = transport;
+
+      // Reset form
+      form.reset();
+    });
+  </script>
+</body>
+</html>
